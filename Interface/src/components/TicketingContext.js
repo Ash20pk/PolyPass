@@ -42,7 +42,7 @@ export const TicketingProvider = ({ children }) => {
   }, []);
 
   return (
-    <TicketingContext.Provider value={{ web3js, accounts, contract, connected, initWeb3 }}>
+    <TicketingContext.Provider value={{ web3js, accounts, contract, connected, initWeb3, setConnected}}>
       {children}
     </TicketingContext.Provider>
   );

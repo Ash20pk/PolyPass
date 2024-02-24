@@ -46,11 +46,6 @@ const Home = () => {
   return (
     <div className="container">
       <h1 className="welcome-heading">Welcome to PolyPass!</h1>
-      {!connected ? (
-        <Button variant="contained" className="button" onClick={handleConnectWallet} disabled={loading}>
-          {loading ? 'Connecting...' : 'Connect Wallet'}
-        </Button>
-      ) : (
         <>
           <div>
             {tickets.length > 0 ? (
@@ -73,7 +68,7 @@ const Home = () => {
             )}
           </div>
         </>
-      )}
+    
     </div>
   );
 };
