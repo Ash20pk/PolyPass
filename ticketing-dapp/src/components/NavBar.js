@@ -22,7 +22,7 @@ const NavBar = () => {
 
   return (
     <div className="navbar">
-    <h1 className="logo">Ticket</h1>
+    <h1 className="logo">0xTicket</h1>
     {!connected ? (
       <button className="connect-button" onClick={handleConnectWallet} disabled={loading}>
         {loading ? 'Connecting...' : 'Connect Wallet'}
