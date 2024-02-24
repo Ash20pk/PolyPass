@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useTicketing } from './TicketingContext';
 import axios from 'axios';
 import '../styles/TicketCreation.css';
-import {Button, TextField} from '@mui/material';
+import {Button, Stack, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
 
 
 const VisuallyHiddenInput = styled('input')({
@@ -48,10 +49,11 @@ const TicketCreation = () => {
       const ipfsURI = await uploadToIPFS(imageFile);
 
       // Call the contract's createTicketingContract method with URI
+      console.log(name, symbol, price, maxTicket, eventName, ipfsURI, accounts)
       await contract.methods.createTicketingContract(name, symbol, price, maxTicket, eventName, ipfsURI).send({ from: accounts });
 
       // Get the latest contract address after creation
-      const contracts = await contract.methods.getUserContracts(accounts).call();
+      const contracts = await contract.methods.getUserContracts(accounts).call({ from: accounts });
       const latest = contracts.length > 0 ? contracts[contracts.length - 1] : '';
       setContractAddress(latest);
 
@@ -108,20 +110,20 @@ const TicketCreation = () => {
       <div className="preview-card">
       {previewImage && <img src={previewImage} alt="Ticket Preview" className="preview-image-bigger" />}
       </div>
-      <div className="input-group">
+      <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
         <TextField id="outlined-basic" label="Name" variant="outlined" type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="input-field" />
         <TextField id="outlined-basic" label="Symbol" variant="outlined" margin="normal" type="text" placeholder="Symbol" value={symbol} onChange={(e) => setSymbol(e.target.value)} className="input-field" />
         <TextField id="outlined-basic" label="Event Name" variant="outlined" margin="normal" type="text" placeholder="Event Name" value={eventName} onChange={(e) => setEventName(e.target.value)} className="input-field" />
         <TextField id="outlined-basic" label="Price" variant="outlined" margin="normal" type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} className="input-field" />
         <TextField id="outlined-basic" label="Max Ticket" variant="outlined" margin="normal" type="number" placeholder="Max Ticket" value={maxTicket} onChange={(e) => setMaxTicket(e.target.value)} className="input-field" />
         {/* Input for file upload */}
-        <Button component="label" role={undefined} variant="contained" onChange={handleFileChange} className="file-input"> Choose File <VisuallyHiddenInput type="file" /></Button>
-      </div>
+        <Button component="label" role={undefined} variant="contained" onChange={handleFileChange} > Choose Image <VisuallyHiddenInput type="file" /></Button>
       <Button variant='contained'onClick={handleCreateTicket} disabled={loading} className="create-button">
         {loading ? 'Creating...' : 'Create Ticket'}
       </Button>
-      {error && <p className="error-message">Error: {error}</p>}
-      {contractAddress && <p className="contract-message">Interact with contract: <a href={`/${contractAddress}`} className="contract-link">Share this link</a></p>}
+      {error && <Alert severity="error" className="error-message">{error}</Alert>}
+      {contractAddress && <Alert severity="success">Interact with contract: <a href={`/${contractAddress}`} className="contract-link">Share this link</a></Alert>}
+      </Stack>
     </div>
   );
 };

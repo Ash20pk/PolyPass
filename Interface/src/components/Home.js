@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 
 const Home = () => {
-  const { initWeb3, accounts, connected, contract } = useTicketing();
+  const { connected, contract } = useTicketing();
   const [loading, setLoading] = useState(false);
   const [tickets, setTickets] = useState([]);
 
@@ -16,16 +16,6 @@ const Home = () => {
     }
   }, [connected]);
 
-  const handleConnectWallet = async () => {
-    setLoading(true);
-    try {
-      await initWeb3();
-    } catch (error) {
-      console.error('Error connecting wallet:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const fetchAllTickets = async () => {
     setLoading(true);
@@ -64,7 +54,7 @@ const Home = () => {
                 ))}
               </div>
             ) : (
-              <p className="no-tickets">No tickets found.</p>
+              <p className="no-tickets">Loading...</p>
             )}
           </div>
         </>

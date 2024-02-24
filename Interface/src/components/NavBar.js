@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 
 
 const NavBar = () => {
-  const { initWeb3, connected, setConnected } = useTicketing();
+  const { initWeb3, connected, disconnect} = useTicketing();
   const [loading, setLoading] = useState(false);
 
   const handleConnectWallet = async () => {
@@ -21,6 +21,8 @@ const NavBar = () => {
     }
   };
 
+  console.log(connected);
+
   return (
     <div className="navbar">
       <div className="nav-links">
@@ -29,11 +31,11 @@ const NavBar = () => {
     </div>
     <h1 className="logo">PolyPass</h1>
     {!connected ? (
-      <Button variant='contained' className="connect-button" onClick={handleConnectWallet} >
+      <Button variant='contained'  onClick={handleConnectWallet} >
         {loading ? 'Connecting...' : 'Connect Wallet'}
       </Button>
     ) : (
-      <Button variant='contained' className="connect-button" color="success" onClick={() => setConnected(false)} >
+      <Button variant='contained' color="success" onClick={disconnect} >
         Wallet Connected
       </Button>
     )}

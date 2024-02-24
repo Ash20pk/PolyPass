@@ -16,6 +16,7 @@ export const TicketingProvider = ({ children }) => {
   const initWeb3 = async () => {
     try {
       if (window.ethereum) {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
         const web3Instance = new Web3(window.ethereum);
         setWeb3(web3Instance);
         const accounts = await web3Instance.eth.getAccounts();
@@ -37,12 +38,18 @@ export const TicketingProvider = ({ children }) => {
     }
   };
 
+  const disconnect = async () => {
+    setAccounts(null);
+    setContract(null);
+    setConnected(false);
+  };
+
   useEffect(() => {
     initWeb3();
   }, []);
 
   return (
-    <TicketingContext.Provider value={{ web3js, accounts, contract, connected, initWeb3, setConnected}}>
+    <TicketingContext.Provider value={{ web3js, accounts, contract, connected, initWeb3, disconnect}}>
       {children}
     </TicketingContext.Provider>
   );

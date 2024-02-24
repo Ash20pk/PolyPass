@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Alert from '@mui/material/Alert';
 
 const TicketPage = () => {
-  const { web3js } = useTicketing();
+  const { web3js, accounts } = useTicketing();
   const { contractAddress } = useParams(); // Retrieve the contract address parameter from the URL
   const [eventName, setEventName] = useState('');
   const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ const TicketPage = () => {
       try {
         setLoading(true);
         setError(null);
-
+        console.log(contractAddress);
         const ticketInstance = new web3js.eth.Contract(
           TicketingABI.abi,
           contractAddress,
@@ -36,7 +36,7 @@ const TicketPage = () => {
     };
 
     fetchEventName();
-  }, [contractAddress]);
+  }, [accounts]);
 
   return (
     <div className="ticket-page-container">
