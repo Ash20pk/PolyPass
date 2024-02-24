@@ -11,7 +11,7 @@ export const TicketingProvider = ({ children }) => {
   const [contract, setContract] = useState(null);
   const [connected, setConnected] = useState(false);
 
-  const TicketingFactoryAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
+  const TicketingFactoryAddress = "0xAf03acDA696D5743fB5E8f0f352B9612F1056875";
 
   const initWeb3 = async () => {
     try {
