@@ -1,0 +1,60 @@
+/* Home.css */
+
+.welcome-heading {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .connected-account {
+    margin-bottom: 20px;
+  }
+  
+  .button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .ticket-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .ticket-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .ticket-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .contract-address {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .no-tickets {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+  }
+  

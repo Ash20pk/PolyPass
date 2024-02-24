@@ -1,0 +1,56 @@
+/* NavigationBar.css */
+
+.navbar {
+    background-color: #c547b0;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Added to distribute items evenly */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logo {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0; /* Reset margin to avoid default margin on h1 */
+  }
+  
+  .connect-button, 
+  .connected-account {
+    font-weight: bold;
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+    padding: 0.5rem 1.5rem; 
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .connect-button:hover {
+    background-color: #fff;
+    color: #c547b0;
+  }
+  
+  .connected-account {
+    margin: 0 1rem; /* Added margin for spacing */
+  }
+  
+  .nav-links {
+    display: flex;
+  }
+  
+  .nav-link {
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+    margin-left: 1rem; /* Adjusted margin for spacing */
+  }
+  
+  .nav-link:hover {
+    color: #e6e6e6;
+    text-decoration: underline; 
+  }
+  
