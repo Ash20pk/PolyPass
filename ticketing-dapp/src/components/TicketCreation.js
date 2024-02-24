@@ -90,8 +90,9 @@ const TicketCreation = () => {
   return (
     <div className="ticket-creation-container">
       <h2>Create a New Ticket</h2>
-      {/* Preview of the selected image */}
-      {previewImage && <img src={previewImage} alt="Ticket Preview" className="preview-image" />}
+      <div className="preview-card">
+      {previewImage && <img src={previewImage} alt="Ticket Preview" className="preview-image-bigger" />}
+      </div>
       <div className="input-group">
         <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="input-field" />
         <input type="text" placeholder="Symbol" value={symbol} onChange={(e) => setSymbol(e.target.value)} className="input-field" />
@@ -105,7 +106,7 @@ const TicketCreation = () => {
         {loading ? 'Creating...' : 'Create Ticket'}
       </button>
       {error && <p className="error-message">Error: {error}</p>}
-      {contractAddress && <p className="contract-message">Interact with contract: <a href={`/${contractAddress}`} className="contract-link">{contractAddress}</a></p>}
+      {contractAddress && <p className="contract-message">Interact with contract: <a href={`/${contractAddress}`} className="contract-link">Share this link</a></p>}
     </div>
   );
 };

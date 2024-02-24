@@ -7,8 +7,8 @@ contract TicketingFactory {
     mapping(address => address[]) public userContracts;
     mapping(address => string) public fetchEvents;
     mapping(address => string) public contractURI;
-    address[] contractAddresses;
-    uint256 totalContracts;
+    address[] public contractAddresses;
+    uint256 public totalContracts;
 
     event TicketingContractCreated(address indexed user, address indexed contractAddress);
 
@@ -38,12 +38,10 @@ contract TicketingFactory {
         address[] memory allAddresses = new address[](totalContracts);
         uint index = 0;
         for (uint i = 0; i < contractAddresses.length; i++) {
-            address[] memory userContractAddresses = userContracts[contractAddresses[i]];
-            for (uint j = 0; j < userContractAddresses.length; j++) {
-                allAddresses[index] = userContractAddresses[j];
-                index++;
+            allAddresses[index] = contractAddresses[i];
+            index++;
             }
-        }
+
         return allAddresses;
     }
 }

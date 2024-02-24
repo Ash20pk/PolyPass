@@ -5,7 +5,7 @@ import TicketingABI from '../contracts/Ticketing.json';
 import '../styles/TicketPage.css'; // Import the CSS file for styling
 
 const TicketPage = () => {
-  const { web3 } = useTicketing();
+  const { web3js } = useTicketing();
   const { contractAddress } = useParams(); // Retrieve the contract address parameter from the URL
   const [eventName, setEventName] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ const TicketPage = () => {
         setLoading(true);
         setError(null);
 
-        const ticketInstance = new web3.eth.Contract(
+        const ticketInstance = new web3js.eth.Contract(
           TicketingABI.abi,
           contractAddress,
         );

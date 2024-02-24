@@ -6,12 +6,12 @@ import TicketingContractABI from '../contracts/TicketingFactory.json';
 const TicketingContext = createContext();
 
 export const TicketingProvider = ({ children }) => {
-  const [web3, setWeb3] = useState(null);
+  const [web3js, setWeb3] = useState(null);
   const [accounts, setAccounts] = useState([]);
   const [contract, setContract] = useState(null);
   const [connected, setConnected] = useState(false);
 
-  const TicketingFactoryAddress = "0xAf03acDA696D5743fB5E8f0f352B9612F1056875";
+  const TicketingFactoryAddress = "0x6c24ad330B9D401efdA0596D51f89F5A72180D7c";
 
   const initWeb3 = async () => {
     try {
@@ -42,7 +42,7 @@ export const TicketingProvider = ({ children }) => {
   }, []);
 
   return (
-    <TicketingContext.Provider value={{ web3, accounts, contract, connected, initWeb3 }}>
+    <TicketingContext.Provider value={{ web3js, accounts, contract, connected, initWeb3 }}>
       {children}
     </TicketingContext.Provider>
   );

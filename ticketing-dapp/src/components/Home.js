@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTicketing } from './TicketingContext';
-import '../styles/Home.css'; // Import the CSS file
+import { Link } from 'react-router-dom';
+import '../styles/Home.css';
 
 const Home = () => {
   const { initWeb3, accounts, connected, contract } = useTicketing();
@@ -49,19 +50,26 @@ const Home = () => {
         </button>
       ) : (
         <>
-          <p className="connected-account">Connected Account: {accounts}</p>
-          {tickets.length > 0 ? (
-            <div className="ticket-cards-container">
-              {tickets.map((ticket, index) => (
-                <div key={index} className="ticket-card">
-                  <img src={ticket.ticketURI} alt={`Ticket ${index + 1}`} className="ticket-image" />
-                  <p className="contract-address">Contract Address: {ticket.address}</p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="no-tickets">No tickets found.</p>
-          )}
+          <div>
+            {tickets.length > 0 ? (
+              <div className="ticket-cards-container">
+                {tickets.map((ticket, index) => (
+                  <div className="ticket-card" key={index}>
+                    <Link to={`/${ticket.address}`} className="ticket-link">
+                      <img 
+                        src={`https://gateway.pinata.cloud/ipfs/${ticket.ticketURI.slice(7)}`} 
+                        alt={`Ticket ${index + 1}`} 
+                        className="ticket-image" 
+                      />
+                      <button className='button'>view details</button>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="no-tickets">No tickets found.</p>
+            )}
+          </div>
         </>
       )}
     </div>

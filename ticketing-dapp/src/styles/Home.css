@@ -28,28 +28,25 @@
   }
   
   .ticket-cards-container {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
   }
   
   .ticket-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    width: 150px; /* Set the width of the ticket card */
   }
   
   .ticket-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-  
-  .contract-address {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
+    width: 100%; /* Make the image width 100% of its container */
+    height: 150px; /* Ensure the aspect ratio is maintained */
+    max-height: 150px; /* Set the maximum height of the image */
+    padding: 5px;
   }
   
   .no-tickets {
@@ -57,4 +54,3 @@
     font-size: 16px;
     color: #555;
   }
-  

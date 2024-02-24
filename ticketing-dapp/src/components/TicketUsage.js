@@ -6,13 +6,13 @@ import TicketingABI from '../contracts/Ticketing.json';
 import '../styles/TicketUsage.css'; // Import the CSS file for styling
 
 const TicketUsage = () => {
-  const { accounts, web3 } = useTicketing(); // Destructure the contract from the context
+  const { accounts, web3js } = useTicketing(); // Destructure the contract from the context
   const { contractAddress } = useParams(); // Retrieve the contract address parameter from the URL
   const [ticketId, setTicketId] = useState(''); // Retrieve the set ticket identifier
 
   const handleUseTicket = async () => {
     try {
-      const ticketInstance = new web3.eth.Contract(
+      const ticketInstance = new web3js.eth.Contract(
         TicketingABI.abi,
         contractAddress,
       );
