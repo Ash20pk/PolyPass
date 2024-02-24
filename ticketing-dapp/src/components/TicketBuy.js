@@ -4,6 +4,7 @@ import { useTicketing } from './TicketingContext';
 import { useParams } from 'react-router-dom';
 import TicketingABI from '../contracts/Ticketing.json';
 import '../styles/TicketBuy.css'; // Import the CSS file for styling
+import Button from '@mui/material/Button';
 
 const TicketBuy = () => {
   const { accounts, web3js } = useTicketing(); // Destructure the contract from the context
@@ -29,7 +30,7 @@ const TicketBuy = () => {
   return (
     <div className="ticket-buy-container">
       <h2>Buy Ticket</h2>
-      <button onClick={handleBuyTicket} className="buy-button">Buy Ticket</button>
+      <Button variant='contained' onClick={handleBuyTicket} className="buy-button">Buy Ticket</Button>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTicketing } from './TicketingContext'; 
 import '../styles/NavBar.css';
+import Button from '@mui/material/Button';
 
 
 const NavBar = () => {
@@ -22,11 +23,11 @@ const NavBar = () => {
 
   return (
     <div className="navbar">
-    <h1 className="logo">0xTicket</h1>
+    <h1 className="logo">PolyPass</h1>
     {!connected ? (
-      <button className="connect-button" onClick={handleConnectWallet} disabled={loading}>
+      <Button variant='contained' className="connect-button" onClick={handleConnectWallet} disabled={loading}>
         {loading ? 'Connecting...' : 'Connect Wallet'}
-      </button>
+      </Button>
     ) : (
       <p className="connected-account">Connected Account: {accounts}</p>
     )}

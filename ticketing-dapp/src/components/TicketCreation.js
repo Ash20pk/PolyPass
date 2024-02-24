@@ -2,6 +2,21 @@ import React, { useState } from 'react';
 import { useTicketing } from './TicketingContext';
 import axios from 'axios';
 import '../styles/TicketCreation.css';
+import {Button, TextField} from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+
+const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+  });
 
 const TicketCreation = () => {
   const { contract, accounts } = useTicketing();
@@ -94,17 +109,17 @@ const TicketCreation = () => {
       {previewImage && <img src={previewImage} alt="Ticket Preview" className="preview-image-bigger" />}
       </div>
       <div className="input-group">
-        <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="input-field" />
-        <input type="text" placeholder="Symbol" value={symbol} onChange={(e) => setSymbol(e.target.value)} className="input-field" />
-        <input type="text" placeholder="Event Name" value={eventName} onChange={(e) => setEventName(e.target.value)} className="input-field" />
-        <input type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} className="input-field" />
-        <input type="number" placeholder="Max Ticket" value={maxTicket} onChange={(e) => setMaxTicket(e.target.value)} className="input-field" />
+        <TextField id="outlined-basic" label="Name" variant="outlined" type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="input-field" />
+        <TextField id="outlined-basic" label="Symbol" variant="outlined" margin="normal" type="text" placeholder="Symbol" value={symbol} onChange={(e) => setSymbol(e.target.value)} className="input-field" />
+        <TextField id="outlined-basic" label="Event Name" variant="outlined" margin="normal" type="text" placeholder="Event Name" value={eventName} onChange={(e) => setEventName(e.target.value)} className="input-field" />
+        <TextField id="outlined-basic" label="Price" variant="outlined" margin="normal" type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} className="input-field" />
+        <TextField id="outlined-basic" label="Max Ticket" variant="outlined" margin="normal" type="number" placeholder="Max Ticket" value={maxTicket} onChange={(e) => setMaxTicket(e.target.value)} className="input-field" />
         {/* Input for file upload */}
-        <input type="file" accept="image/*" onChange={handleFileChange} className="file-input" />
+        <Button component="label" role={undefined} variant="contained" onChange={handleFileChange} className="file-input"> Choose File <VisuallyHiddenInput type="file" /></Button>
       </div>
-      <button onClick={handleCreateTicket} disabled={loading} className="create-button">
+      <Button variant='contained'onClick={handleCreateTicket} disabled={loading} className="create-button">
         {loading ? 'Creating...' : 'Create Ticket'}
-      </button>
+      </Button>
       {error && <p className="error-message">Error: {error}</p>}
       {contractAddress && <p className="contract-message">Interact with contract: <a href={`/${contractAddress}`} className="contract-link">Share this link</a></p>}
     </div>

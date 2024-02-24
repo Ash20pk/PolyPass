@@ -3,6 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import { useTicketing } from './TicketingContext';
 import TicketingABI from '../contracts/Ticketing.json';
 import '../styles/TicketPage.css'; // Import the CSS file for styling
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Alert from '@mui/material/Alert';
 
 const TicketPage = () => {
   const { web3js } = useTicketing();
@@ -40,23 +43,22 @@ const TicketPage = () => {
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
-        <p>Error: {error}</p>
+        <Alert severity="error">{error}</Alert>
       ) : (
         <>
           <h2>Welcome to {eventName}</h2>
 
-          {/* Buttons with links */}
-          <div className="button-container">
-            <button className="action-button">
+          <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
+            <Button variant='contained' className="action-button">
               <Link to={`/${contractAddress}/buy-ticket`} className="button-link">Buy Ticket</Link>
-            </button>
-            <button className="action-button">
+            </Button>
+            <Button variant='contained' className="action-button">
               <Link to={`/${contractAddress}/refund-ticket`} className="button-link">Refund Ticket</Link>
-            </button>
-            <button className="action-button">
+            </Button>
+            <Button variant='contained' className="action-button">
               <Link to={`/${contractAddress}/use-ticket`} className="button-link">Use Ticket</Link>
-            </button>
-          </div>
+            </Button>
+            </Stack>
         </>
       )}
     </div>

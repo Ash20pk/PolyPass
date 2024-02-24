@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTicketing } from './TicketingContext';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
+import Button from '@mui/material/Button';
+
 
 const Home = () => {
   const { initWeb3, accounts, connected, contract } = useTicketing();
@@ -43,11 +45,11 @@ const Home = () => {
 
   return (
     <div className="container">
-      <h1 className="welcome-heading">Welcome to the Ticketing Platform!</h1>
+      <h1 className="welcome-heading">Welcome to PolyPass!</h1>
       {!connected ? (
-        <button className="button" onClick={handleConnectWallet} disabled={loading}>
+        <Button variant="contained" className="button" onClick={handleConnectWallet} disabled={loading}>
           {loading ? 'Connecting...' : 'Connect Wallet'}
-        </button>
+        </Button>
       ) : (
         <>
           <div>
@@ -61,7 +63,7 @@ const Home = () => {
                         alt={`Ticket ${index + 1}`} 
                         className="ticket-image" 
                       />
-                      <button className='button'>view details</button>
+                      <Button variant="contained" className='button'>view details</Button>
                     </Link>
                   </div>
                 ))}
